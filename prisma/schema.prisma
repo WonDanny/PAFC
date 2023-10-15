@@ -10,13 +10,3 @@ datasource db {
   url      = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
-
-// 도전과제 Config - 메인 테이블
-model ChallengeConfigMain {
-  id          Int      @id @unique
-  state       String
-  leaderboard Boolean
-  type        String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
