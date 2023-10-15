@@ -3,9 +3,9 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "userName" TEXT NOT NULL,
     "phoneNumber" INTEGER NOT NULL,
-    "bloodType" TEXT NOT NULL,
     "position" TEXT NOT NULL,
     "userLevel" INTEGER NOT NULL,
+    "bloodType" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
