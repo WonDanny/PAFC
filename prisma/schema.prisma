@@ -16,9 +16,9 @@ model User {
   id            Int @id @default(autoincrement())
   userName      String
   phoneNumber   Int
-  bloodType     String
   position      String
   userLevel     Int
+  bloodType     String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   userRecord    UserRecord[]
