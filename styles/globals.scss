@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+
+@layer components {
+	.flex-center {
+		&.inline {
+		  	@apply inline-flex;
+		}
+	
+		&:not(.inline) {
+		  	@apply flex;
+		}
+	
+		@apply items-center justify-center;
+	}
+}

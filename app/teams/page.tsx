@@ -17,7 +17,7 @@ const Teams: NextPage = (props: any) => {
     const {} = props;
 
     return (
-        <div className="w-[1200px] h-auto p-10 bg-B300">
+        <div className="w-full h-auto p-10 bg-B300">
             {/* 팀 소개 */}
             <div className="flex justify-between">
                 <div className="flex items-center justify-center w-52 h-52 bg-white">
