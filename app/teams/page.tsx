@@ -1,52 +1,21 @@
-import {NextPage} from 'next';
-import connection from '../../lib/db';
+import MemberList from '@/components/MemberList';
+import Register from '@/components/Register';
 
-const testConnection = async () => {
-  try {
-    await connection.promise().connect();
-    console.log('데이터베이스 연결 성공!');
-  } catch (error) {
-    console.error('데이터베이스 연결 실패:', error);
-  } finally {
-    await connection.promise().end();
-  }
-};
-
-const TEAM_INFO = {
-  id: 1,
-  name: '평안FC',
-  headCoach: '장시만',
-  teamRank: '하하하',
-  members: [
-    {id: 1, name: '이승주', pos: 'LW', age: 33},
-    {id: 2, name: '원승대', pos: 'RB', age: 33}
-  ]
-};
-
-const Teams: NextPage = (props: any) => {
-  const {} = props;
-  testConnection();
+export default function Team() {
   return (
-    <div className="w-full h-auto p-10 bg-B300">
-      {/* 팀 소개 */}
-      <div className="flex justify-between">
-        <div className="flex items-center justify-center w-52 h-52 bg-white">
-          <p className="text-black text-lg">팀 프로필 사진</p>
-        </div>
-
-        <div className="">
-          <p className="text-white">{`팀 명: ${TEAM_INFO.name}`}</p>
-          <p className="text-white">{`팀 원: ${TEAM_INFO.members.length}`}</p>
-          <p className="text-white">{`감독: ${TEAM_INFO.headCoach}`}</p>
-          <p className="text-white">{`팀 랭크: ${TEAM_INFO.teamRank}`}</p>
-        </div>
+    <div className="w-full">
+      <div className="flex text-base font-bold px-6 h-12 items-center">TEAM</div>
+      <div className="flex text-base px-6 h-12 justify-end">
+        <Register></Register>
       </div>
-
-      {/* 가로 선 */}
-      <div className="w-full h-px bg-BD" />
-      {/* 팀원 프로필 */}
+      <div className="text-sm grid grid-flow-col grid-cols-5 gap-0 px-4 items-center">
+        {['선수명', '성별', '나이', '포지션', '연락처'].map((title) => (
+          <div key={title} className="flex border-b-4 border-gray-400 border-double h-12 items-center">
+            <div>{title}</div>
+          </div>
+        ))}
+      </div>
+      <MemberList></MemberList>
     </div>
   );
-};
-
-export default Teams;
+}
