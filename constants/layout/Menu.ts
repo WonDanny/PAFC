@@ -10,7 +10,7 @@ export const MENU = [
   },
   {
     id: 2,
-    name: 'TEAMS',
+    name: 'TEAM',
     linkUrl: '/teams',
     icon: faPeopleGroup
   }
