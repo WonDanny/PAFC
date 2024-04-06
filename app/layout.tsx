@@ -21,16 +21,18 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   // console.log('# ROOT LAYOUT ..!', children)
   return (
     <html lang="en">
-      <body className="w-screen h-screen bg-B500">
+      <body className="w-full h-full text-gray-600">
         {/* header */}
-        <LayoutHeader />
+        {/* <LayoutHeader /> */}
 
-        <div className="flex justify-center">
+        <div className="flex flex-row">
           {/* side */}
-          <LayoutSide />
+          <div className="hidden md:block w-[280px] bg-gray-100 min-h-[100vh]">
+            <LayoutSide />
+          </div>
 
           {/* content */}
-          <div className="flex basis-[900px] p-5">{children}</div>
+          <div className="flex w-full">{children}</div>
         </div>
       </body>
     </html>

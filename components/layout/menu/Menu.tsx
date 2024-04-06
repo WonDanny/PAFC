@@ -10,18 +10,21 @@ import {MENU} from '@/constants/layout/Menu';
 
 const Menu = ({toggleMenu}: any) => {
   return (
-    <div className="absolute top-0 left-0 z-10 basis-60 p-5 space-y-2">
+    <>
       {MENU.map((menu) => {
         return (
-          <div key={menu.id} onClick={toggleMenu}>
-            <Link href={menu.linkUrl} className="flex items-center gap-2">
-              <FontAwesomeIcon icon={menu.icon as IconProp} color="white" />
-              <p className="text-white text-lg font-bold">{menu.name}</p>
-            </Link>
+          <div key={menu.id} className="flex items-center h-12">
+            <div className=" hover:bg-blue-500 min-w-1 mr-5"></div>
+            <div onClick={toggleMenu} className="w-3/4">
+              <Link href={menu.linkUrl} className=" gap-2">
+                {/* <FontAwesomeIcon icon={menu.icon as IconProp} /> */}
+                <div className="text-base font-bold">{menu.name}</div>
+              </Link>
+            </div>
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 
