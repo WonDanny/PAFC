@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id Int @id @default(autoincrement())
+  game_type Int
+  duration Int
+  game_date DateTime
+  team_record TeamRecord[]
+  user_record UserRecord[]
+}
+
+model Team {
+  id Int @id @default(autoincrement())
+  team_name  String
+  level     String?
+  team_record TeamRecord[]
+  team_user TeamUser[]
+}
+
+model User {
+	id Int @id @default(autoincrement())
+	user_name  String
+	age Int?
+	gender String?
+	phone_number String?
+	position String?
+	user_level Int?
+	blood_type String?
+	team_user TeamUser[]
+	user_record UserRecord[]
+}
+
+model TeamRecord {
+	team Team @relation(fields: [team_id], references: [id])
+	game Game @relation(fields: [game_id] ,references: [id])
+	team_id Int
+	game_id Int
+	duration Int
+	game_date DateTime
+
+	@@id([team_id, game_id])
+	@@map("team_record")
+}
+
+model TeamUser {
+	team Team @relation(fields: [team_id], references: [id])
+	user User @relation(fields: [user_id], references: [id])
+	team_id Int
+	user_id Int
+
+	@@id([team_id, user_id])
+	@@map("team_user")
+}
+
+model UserRecord {
+	user User @relation(fields: [user_id], references: [id])
+	game Game @relation(fields: [game_id] ,references: [id])
+	user_id Int
+	game_id Int
+	game_quoter Int
+	assist Int
+	decede Int
+	@@id([user_id, game_id])
+	@@map("user_record")
+}

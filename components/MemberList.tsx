@@ -1,6 +1,4 @@
-import {db} from '@/db/db';
-import * as t from '@/db/schema';
-import {eq} from 'drizzle-orm/mysql-core/expressions';
+import prisma from '@/db/db';
 
 interface Member {
   user_id: number;
@@ -14,17 +12,22 @@ interface Member {
 let members: Member[] = [];
 
 const MemberList = async () => {
-  const datas = await db.select({user_id: t.user.id, user_name: t.user.user_name, gender: t.user.gender, age: t.user.age, position: t.user.position, phone_number: t.user.phone_number}).from(t.teamUsers).leftJoin(t.user, eq(t.teamUsers.userId, t.user.id));
+  const datas = await prisma.teamUser.findMany({
+    relationLoadStrategy: 'join',
+    include: {
+      user: true
+    }
+  });
 
   members = datas
     .filter((data) => data !== null)
     .map((data) => ({
       user_id: data.user_id!,
-      user_name: data.user_name!,
-      gender: data.gender!,
-      age: data.age!,
-      position: data.position!,
-      phone_number: data.phone_number!
+      user_name: data.user.user_name!,
+      gender: data.user.gender!,
+      age: data.user.age!,
+      position: data.user.position!,
+      phone_number: data.user.phone_number!
     }));
   return (
     <>
