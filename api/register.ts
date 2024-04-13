@@ -1,34 +1,18 @@
 'use server';
 
-import {db} from '@/db/db';
-import * as t from '@/db/schema';
-import {eq} from 'drizzle-orm/mysql-core/expressions';
-import {revalidatePath} from 'next/cache';
+import prisma from '@/db/db';
 
 export async function insertUser(formData: any) {
-  try {
-    // await db.insert(t.user).values({
-    //   user_name: formData.get('user_name'),
-    //   gender: formData.get('gender'),
-    //   age: formData.get('age'),
-    //   position: formData.get('position'),
-    //   phone_number: formData.get('phone_number')
-    // }); // Use `returning` to retrieve the ID
+  // 첫 번째 테이블에 데이터 삽입
+  const user = await prisma.user.create({
+    data: formData
+  });
 
-    // const userId = (await db.select().from(t.user)).length + 1;
-
-    // // Insert team user data using the retrieved ID
-    // await db.insert(t.teamUsers).values({
-    //   teamId: 1,
-    //   userId // Use the fetched ID here
-    // });
-
-    const datas = await db.select({user_id: t.user.id, user_name: t.user.user_name, gender: t.user.gender, age: t.user.age, position: t.user.position, phone_number: t.user.phone_number}).from(t.teamUsers).leftJoin(t.user, eq(t.teamUsers.userId, t.user.id));
-    console.log(datas);
-
-    console.log('User and team user data inserted successfully!');
-  } catch (error) {
-    console.error('Error inserting data:', error);
-  }
-  revalidatePath('/');
+  // 두 번째 테이블에 데이터 삽입, 첫 번째 테이블에서 생성된 사용자 ID 참조
+  const post = await prisma.teamUser.create({
+    data: {
+      user_id: user.id,
+      team_id: 1
+    }
+  });
 }
