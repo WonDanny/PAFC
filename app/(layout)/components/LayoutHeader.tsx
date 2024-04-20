@@ -2,7 +2,7 @@
 
 import React, {useState} from 'react';
 // LayoutSide 또는 사이드 메뉴 컴포넌트 임포트
-import Menu from './menu/Menu';
+import Menu from './Menu';
 import Link from 'next/link';
 
 // fontawesome

@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 
 // constants
-import {MENU} from '@/constants/layout/Menu';
+import {MENU} from '@/app/(team)/constants/Menu';
 
 const Menu = ({toggleMenu}: any) => {
   return (
