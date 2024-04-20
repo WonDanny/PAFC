@@ -1,8 +1,8 @@
-import MemberList from '@/components/MemberList';
-import Register from '@/components/Register';
+import MemberList from '@/app/(team)/components/MemberList';
+import Register from '@/app/(team)/components/Register';
 
 async function go() {
-  const response = await fetch('http://localhost:3000/teams/api', {method: 'GET'});
+  const response = await fetch('http://localhost:3000/team/api', {method: 'GET'});
   const data = await response.json();
   return data;
 }
