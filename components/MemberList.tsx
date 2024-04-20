@@ -1,4 +1,4 @@
-import prisma from '@/db/db';
+import React from 'react';
 
 interface Member {
   user_id: number;
@@ -9,26 +9,8 @@ interface Member {
   phone_number: string;
 }
 
-let members: Member[] = [];
-
-const MemberList = async () => {
-  const datas = await prisma.teamUser.findMany({
-    relationLoadStrategy: 'join',
-    include: {
-      user: true
-    }
-  });
-
-  members = datas
-    .filter((data) => data !== null)
-    .map((data) => ({
-      user_id: data.user_id!,
-      user_name: data.user.user_name!,
-      gender: data.user.gender!,
-      age: data.user.age!,
-      position: data.user.position!,
-      phone_number: data.user.phone_number!
-    }));
+const MemberList = (props: any) => {
+  const members: Member[] = props.data;
   return (
     <>
       {members.map((member) => (
@@ -44,4 +26,4 @@ const MemberList = async () => {
   );
 };
 
-export default MemberList;
+export default React.memo(MemberList);

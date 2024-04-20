@@ -1,7 +1,14 @@
 import MemberList from '@/components/MemberList';
 import Register from '@/components/Register';
 
-export default function Team() {
+async function go() {
+  const response = await fetch('http://localhost:3000/teams/api', {method: 'GET'});
+  const data = await response.json();
+  return data;
+}
+export default async function Team() {
+  const datas = await go();
+  console.log(datas);
   return (
     <div className="w-full">
       <div className="flex text-base font-bold px-6 h-12 items-center">TEAM</div>
@@ -15,7 +22,7 @@ export default function Team() {
           </div>
         ))}
       </div>
-      <MemberList></MemberList>
+      <MemberList {...datas}></MemberList>
     </div>
   );
 }
