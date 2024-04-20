@@ -1,4 +1,4 @@
-import Menu from './menu/Menu';
+import Menu from './Menu';
 import Link from 'next/link';
 
 const LayoutSide = () => {
