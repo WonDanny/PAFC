@@ -1,7 +1,6 @@
 'use client';
 
 import {useState} from 'react';
-import {insertUser} from '@/api/register';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -20,7 +19,6 @@ export default function Register() {
 
   const handleRegister = async () => {
     const formData = {user_name: name, gender: gender, age: age, position: position, phone_number: phoneNumber};
-    await insertUser(formData);
   };
 
   return (

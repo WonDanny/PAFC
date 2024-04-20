@@ -21,6 +21,8 @@ model Game {
   game_date DateTime
   team_record TeamRecord[]
   user_record UserRecord[]
+
+  @@map("game")
 }
 
 model Team {
@@ -29,6 +31,8 @@ model Team {
   level     String?
   team_record TeamRecord[]
   team_user TeamUser[]
+
+  @@map("team")
 }
 
 model User {
@@ -42,6 +46,8 @@ model User {
 	blood_type String?
 	team_user TeamUser[]
 	user_record UserRecord[]
+
+	@@map("user")
 }
 
 model TeamRecord {
