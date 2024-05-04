@@ -5,13 +5,15 @@ import Link from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 
-// constants
-import {MENU} from '@/app/(team)/constants/Menu';
-
 const Menu = ({toggleMenu}: any) => {
+  const menu = [
+    {linkUrl: '/', name: 'HOME', id: 1},
+    {linkUrl: '/team', name: 'TEAM', id: 2}
+  ];
+
   return (
     <>
-      {MENU.map((menu) => {
+      {menu.map((menu) => {
         return (
           <div key={menu.id} className="flex items-center h-12">
             <div className=" hover:bg-blue-500 min-w-1 mr-5"></div>
